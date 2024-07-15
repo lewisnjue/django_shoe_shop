@@ -24,7 +24,10 @@ def women(request):
     return render(request,'women.html',{
         'products':products
     })
-def product_detail(request):
-    return render(request,'product-detail.html')
+def product_detail(request,pk):
+    product = Product.objects.get(pk = pk)
+    return render(request,'product-detail.html',{
+        'product': product
+    })
 def contact(request):
     return render(request,'contact.html')
