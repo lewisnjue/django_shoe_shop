@@ -1,8 +1,11 @@
 from django.shortcuts import render
-
+from .models import Product
 # Create your views here.
 def index(request):
-    return render(request,'index.html')
+    products = Product.objects.all()
+    return render(request,'index.html',{
+        'products':products
+    })
 def cart(request):
     return render(request,'cart.html')
 
@@ -12,9 +15,15 @@ def about(request):
 def checkout(request):
     return render(request,'checkout.html')
 def men(request):
-    return render(request,'men.html')
+    products = Product.objects.filter(gender = 'm')
+    return render(request,'men.html',{
+        'products':products
+    })
 def women(request):
-    return render(request,'women.html')
+    products = Product.objects.filter(gender = 'f')
+    return render(request,'women.html',{
+        'products':products
+    })
 def product_detail(request):
     return render(request,'product-detail.html')
 def contact(request):
